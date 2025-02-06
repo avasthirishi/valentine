@@ -38,16 +38,11 @@
             border-radius: 10px;
         }
 
-        /* Heart Animation */
-        .heart {
-            color: red;
-            font-size: 50px;
-            animation: heartbeat 1.5s infinite;
-        }
-
-        @keyframes heartbeat {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.2); }
+        /* Moving NO Button */
+        #noButton {
+            position: relative;
+            transition: transform 0.2s ease-in-out;
+            display: inline-block;
         }
 
         /* Countdown Timer Styling */
@@ -55,12 +50,6 @@
             background: rgba(255, 255, 255, 0.1);
             border-top: none;
             padding: 20px;
-        }
-
-        /* Moving NO Button */
-        #noButton {
-            position: absolute;
-            transition: transform 0.2s ease-in-out;
         }
 
         /* Confetti Hearts */
@@ -112,7 +101,7 @@
                         <div class="col-md-8">
                             <div class="card">
                                 <div class="card-header bg-primary text-white">
-                                    <h4 class="mb-0 text-center">⏳ Time to Accept</h4>
+                                    <h4 class="mb-0 text-center">⏳ Countdown Timer</h4>
                                 </div>
                                 <div class="card-body">
                                     <div class="row text-center">
@@ -136,7 +125,7 @@
 
     <script>
         // Countdown Timer Logic
-        const countDownDate = new Date().getTime() + (2 * 60 * 1000);
+        const countDownDate = new Date().getTime() + (27 * 60 * 1000);
         const x = setInterval(function() {
             const now = new Date().getTime();
             const distance = countDownDate - now;
@@ -153,14 +142,27 @@
             }
         }, 1000);
 
-        // Moving NO Button Logic
-        document.getElementById("noButton").addEventListener("click", function(event) {
+        // Function to Move the NO Button Randomly
+        function moveNoButton(event) {
             event.preventDefault();
-            let button = event.target;
-            let randomX = (Math.random() * 4 - 2) * 30;
-            let randomY = (Math.random() * 4 - 2) * 30;
+            let button = document.getElementById("noButton");
+            let randomX = (Math.random() * 4 - 2) * 30; // Random shift between -2cm and 2cm
+            let randomY = (Math.random() * 4 - 2) * 30; // Random shift between -2cm and 2cm
             button.style.transform = `translate(${randomX}px, ${randomY}px)`;
-        });
+        }
+
+        // Detect If User Is on Mobile
+        function isMobile() {
+            return /Mobi|Android/i.test(navigator.userAgent);
+        }
+
+        let noButton = document.getElementById("noButton");
+
+        if (isMobile()) {
+            noButton.addEventListener("click", moveNoButton); // Move on tap (for phones)
+        } else {
+            noButton.addEventListener("mouseenter", moveNoButton); // Move on hover (for desktops)
+        }
 
         // Confetti Effect
         function createConfetti() {
@@ -181,3 +183,4 @@
 
   </body>
 </html>
+
