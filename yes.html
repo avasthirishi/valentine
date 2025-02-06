@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Forever Valentine! ❤️</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            background: linear-gradient(45deg, #ff9a9e, #fad0c4, #fad0c4, #ffdde1);
+            background-size: 400% 400%;
+            animation: gradientBG 10s ease infinite;
+            font-family: 'Poppins', sans-serif;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .container {
+            margin-top: 50px;
+        }
+
+        .heart {
+            color: red;
+            font-size: 50px;
+            animation: heartbeat 1.5s infinite;
+        }
+
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+
+        .valentine-text {
+            font-size: 1.2rem;
+            color: #fff;
+            padding: 20px;
+            background: rgba(255, 0, 76, 0.8);
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(255, 0, 76, 0.5);
+        }
+
+        .celebration {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #fff;
+            margin-top: 20px;
+        }
+
+        .confetti {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .confetti div {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: red;
+            opacity: 0.8;
+            animation: fall 4s linear infinite;
+        }
+
+        @keyframes fall {
+            0% { transform: translateY(-10px) rotate(0deg); }
+            100% { transform: translateY(100vh) rotate(720deg); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container text-center">
+        <h1 class="celebration">🎉 You Said YES! 🎉</h1>
+        <p class="valentine-text">
+            Wait… did I hear that right? You actually said YES?! Someone pinch me—I must be dreaming!  
+            From this moment on, you’re officially stuck with me—no takebacks! 💘  
+            Get ready for endless cute messages, random surprises, and way too many heart emojis.  
+            You just made the BEST decision of your life!  
+            <br><br>
+            This agreement has no expiration date—so congratulations, you just signed up to be my Valentine forever!  
+            That means unlimited hugs, random ‘I miss you’ texts, and me constantly reminding you how incredibly special you are.  
+            <br><br>
+            Oh, and just so you know… there’s no escape! This means spontaneous dates, sweet surprises,  
+            and an overwhelming amount of love coming your way—forever! You’ve been warned! 😘💞
+        </p>
+        <span class="heart">❤️</span>
+    </div>
+
+    <!-- Confetti Effect -->
+    <div class="confetti"></div>
+
+    <script>
+        // Create confetti effect
+        function createConfetti() {
+            const confettiContainer = document.querySelector('.confetti');
+            for (let i = 0; i < 50; i++) {
+                let confettiPiece = document.createElement('div');
+                confettiPiece.style.left = Math.random() * 100 + 'vw';
+                confettiPiece.style.animationDuration = (Math.random() * 3 + 2) + 's';
+                confettiPiece.style.backgroundColor = ['red', 'pink', 'white'][Math.floor(Math.random() * 3)];
+                confettiContainer.appendChild(confettiPiece);
+            }
+        }
+        createConfetti();
+    </script>
+
+</body>
+</html>
